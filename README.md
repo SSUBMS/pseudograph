@@ -6,7 +6,7 @@ Graph Attention Network를 이용한 Bulk Hi-C 데이터의 Cell Line별 기여�
 
 ## 📋 개요
 
-혼합된 Bulk Hi-C 데이터에서 각 contact이 어떤 cell line (GM12878, H1Esc, HAP1, HFF, IMR90)에서 유래했는지 **기여도 비율을 예측**하는 모델입니다.
+혼합된 Bulk Hi-C 데이터에서 각 contact이 어떤 cell line (GM12878, H1Esc, HAP1, HFF, IMR90)에서 유래했는지 **기여도 비율을 예측**하는 모델
 
 **핵심 아이디어**: 
 - Graph Neural Network (GAT)로 Hi-C contact 네트워크를 학습
@@ -177,57 +177,6 @@ data/
 - `best_model.pth`: 학습된 모델
 - `training_results.pkl`: 성능 지표
 
----
-
-## 📈 성능
-
-| Metric | Value |
-|--------|-------|
-| Overall MAE | 0.0429 |
-| KL Loss | 0.055 |
-
-**Cell line별 MAE**:
-- IMR90: 0.0080 (최고)
-- HFF: 0.0411
-- HAP1: 0.0378
-- H1Esc: 0.0649
-- GM12878: 0.0629
-
----
-
-## 🎯 주요 하이퍼파라미터
-
-| Component | Parameter | Value |
-|-----------|-----------|-------|
-| Node2Vec | dimensions | 512 |
-| | walk_length | 150 |
-| | num_walks | 50 |
-| GAT Encoder | hidden_dim | 128 |
-| | output_dim | 64 |
-| | num_heads | 4 |
-| | num_layers | 3 |
-| Edge Decoder | hidden_dim | 128 |
-| | num_layers | 3 |
-| Training | batch_size | 512 |
-| | learning_rate | 0.001 |
-| | epochs | 50 |
-
----
-
-## ⚠️ 한계점
-
-1. **검증 부족**: 같은 cell line 조합으로만 학습/검증 (새로운 조합에 대한 일반화 미검증)
-2. **Circular reasoning**: Ground truth가 같은 데이터에서 유래
-3. **Baseline 비교 없음**: Random, Linear model 대비 성능 비교 필요
-4. **생물학적 검증 없음**: TAD, Compartment 분석 부재
-
----
-
-## 📚 참고 문헌
-
-- **Hi-C**: Lieberman-Aiden et al. (2009), Rao et al. (2014)
-- **GAT**: Veličković et al. (2018), Brody et al. (2022)
-- **Node2Vec**: Grover & Leskovec (2016)
 
 ---
 
